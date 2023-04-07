@@ -1,0 +1,19 @@
+on post-fs-data
+    mkdir /data/ram_f2fs 0775 system sdcard_rw encryption=None
+    exec -- /system/bin/make_f2fs /dev/block/ram4
+    mount f2fs /dev/block/ram4 /data/ram_f2fs -o noatime
+    chown system sdcard_rw /data/ram_f2fs
+    chmod 0775 /data/ram_f2fs
+    restorecon /data/ram_f2fs
+
+    mkdir /data/ram_tmpfs 0775 system sdcard_rw encryption=None
+    mount tmpfs tmpfs /data/ram_tmpfs
+    chown system sdcard_rw /data/ram_tmpfs
+    chmod 0775 /data/ram_tmpfs
+    restorecon_recursive /data/ram_tmpfs
+
+on property:sys.init.ramdisk.delay.read=*
+    exec u:r:su:s0 -- /system/bin/bs_ramdisk.sh read
+
+on property:sys.init.ramdisk.delay.write=*
+    exec u:r:su:s0 -- /system/bin/bs_ramdisk.sh write

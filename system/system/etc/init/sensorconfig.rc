@@ -1,0 +1,10 @@
+service sensorconfig /system/bin/sensorconfigs
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+on property:persist.sys.sensorconfig=1
+    start sensorconfig
+    setprop persist.sys.sensorconfig 0

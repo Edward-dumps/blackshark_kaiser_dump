@@ -1,0 +1,64 @@
+on post-fs-data
+    mkdir /data/junk-server  0777 root root
+    mkdir /junk/junk-server  0777 root root
+    mkdir /junk/bscache  0777 system system
+    mkdir /data/tombstones 0775 system system
+    restorecon  /junk
+    restorecon  /junk/lost+found
+
+on property:sys.delete.stability=1
+    start junkdelete
+
+on property:sys.delete.stability=2
+    start junkls   
+
+on property:sys.delete.stability=0
+    stop junkdelete
+    
+on nonencrypted
+    setprop sys.mts.enable 1
+
+on property:vold.decrypt=trigger_restart_framework
+    setprop sys.mts.enable 1
+
+on property:persist.vendor.zeusis.junk.enable=0 && property:sys.mts.enable=1
+    stop junkserverdUtils
+
+on property:persist.vendor.zeusis.junk.enable=0 && property:sys.mts.enable=0
+    stop junkserverd
+
+on property:persist.vendor.phone.beta.state=1 && property:persist.vendor.zeusis.junk.enable=1 && property:sys.mts.enable=1
+    setprop sys.phone.beta 1
+    restart junkserverd
+
+on property:persist.vendor.phone.beta.state=2 && property:persist.vendor.zeusis.junk.enable=1 && property:sys.mts.enable=1
+    setprop sys.phone.beta 2
+    restart junkserverd
+
+on property:persist.vendor.phone.beta.state=3 && property:persist.vendor.zeusis.junk.enable=1 && property:sys.mts.enable=1
+    setprop sys.phone.beta 3
+    restart junkserverd
+
+    
+service junkserverd /system/bin/junkserver
+    user root
+    group root log
+    disabled
+    writepid /dev/cpuset/system-background/tasks
+
+service junkdelete /system/bin/junkrm
+    user root
+    group root
+    disabled
+    oneshot
+    
+service junkls /system/bin/junkrm del
+    user root
+    group root
+    disabled
+    oneshot    
+
+# rescueparty
+on property:sys.rescueparty.dump=*
+    mkdir /junk/junk-server/rescueparty  0777 root root
+    exec u:r:su:s0 -- /system/bin/logcat -b all -v threadtime -v usec -v printable -f /junk/junk-server/rescueparty/rescueparty.log -r 2048 -n 1

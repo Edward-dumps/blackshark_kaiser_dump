@@ -1,0 +1,27 @@
+[
+    {
+        "subject":"gundam",
+        "international":false,
+        "hwversion":[
+            "B.89.10",
+            "B.82.10",
+            "B.81.10"
+        ],
+        "guide_sort":"0,ef08d4ac-e194-44ed-925a-d2e1805c4a4f",
+        "local":{
+            "id":"0"
+        }
+    },
+    {
+        "subject":"blackshark",
+        "international":false,
+        "hwversion":[
+            "*"
+        ],
+        "guide_sort":"0,14e15daf-ea55-4d4d-afcf-592ea5d76e46",
+        "local":{
+            "id":"0"
+        }
+    }
+]
+
