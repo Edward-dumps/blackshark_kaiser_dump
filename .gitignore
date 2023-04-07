@@ -1,0 +1,13 @@
+modem.img
+system/system/apex/com.android.vndk.current.apex
+system/system/app/BsSound/BsSound.apk
+system/system/app/MiWallpaperMars/MiWallpaperMars.apk
+system/system/app/HybridPlatform/HybridPlatform.apk
+system/system/priv-app/Music/Music.apk
+system/system/priv-app/MiuiCamera/MiuiCamera.apk
+system/system/data-app/mocmna/mocmna.apk
+system/system/data-app/MiShop/MiShop.apk
+system/system/data-app/SharkMan/SharkMan.apk
+boot.img
+vendor/etc/dts/dts-eagle.lic
+vendor/data-app/MiguPlay/MiguPlay.apk
