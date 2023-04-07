@@ -1,0 +1,4 @@
+service bshealth-hal-1-0 /vendor/bin/hw/com.blackshark.bshealth@1.0-service
+    class hal
+    user system
+    group system

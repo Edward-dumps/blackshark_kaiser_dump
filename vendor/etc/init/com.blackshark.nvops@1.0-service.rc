@@ -1,0 +1,4 @@
+service nvops-hal /vendor/bin/hw/com.blackshark.nvops@1.0-service
+    class main
+    user root
+    group root system vendor_qti_diag

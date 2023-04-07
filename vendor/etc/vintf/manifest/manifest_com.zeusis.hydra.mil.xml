@@ -1,0 +1,12 @@
+<manifest version="1.0" type="device">
+     <hal format="hidl">
+        <name>com.zeusis.hydra.mil</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IMil</name>
+            <instance>MIL</instance>
+        </interface>
+    </hal>
+</manifest>
+

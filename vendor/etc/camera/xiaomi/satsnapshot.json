@@ -1,0 +1,66 @@
+{
+  "PipelineName": "SatSnapshot",
+  "NodesList": {
+    "Node": [
+      {
+        "//": "com.xiaomi.plugin.sr",
+        "NodeName": "com.xiaomi.plugin.memcpy",
+        "NodeInstance": "MemcpyInstance0"
+      },
+      {
+        "//": "com.xiaomi.plugin.yuvreprocess",
+        "NodeName": "com.xiaomi.plugin.memcpy",
+        "NodeInstance": "MemcpyInstance1"
+      },
+      {
+        "//": "com.xiaomi.plugin.hdr",
+        "NodeName": "com.xiaomi.plugin.memcpy",
+        "NodeInstance": "MemcpyInstance2"
+      }
+    ]
+  },
+  "PortLinkages": {
+    "Link": [
+      {
+        "SrcPort": {
+          "PortId": 0,
+          "NodeInstance": "SourceBuffer"
+        },
+        "DstPort": {
+          "PortId": 0,
+          "NodeInstance": "MemcpyInstance0"
+        }
+      },
+      {
+        "SrcPort": {
+          "PortId": 0,
+          "NodeInstance": "MemcpyInstance0"
+        },
+        "DstPort": {
+          "PortId": 0,
+          "NodeInstance": "MemcpyInstance1"
+        }
+      },
+      {
+        "SrcPort": {
+          "PortId": 0,
+          "NodeInstance": "MemcpyInstance1"
+        },
+        "DstPort": {
+          "PortId": 0,
+          "NodeInstance": "MemcpyInstance2"
+        }
+      },
+      {
+        "SrcPort": {
+          "PortId": 0,
+          "NodeInstance": "MemcpyInstance2"
+        },
+        "DstPort": {
+          "PortId": 0,
+          "NodeInstance": "SinkBuffer"
+        }
+      }
+    ]
+  }
+}

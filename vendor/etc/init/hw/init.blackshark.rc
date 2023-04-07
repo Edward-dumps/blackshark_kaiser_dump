@@ -1,0 +1,6 @@
+# ODM product specific init rc configs go here
+
+# Import other ODM specific init rc files here
+import /vendor/etc/init/hw/init.blackshark.common.rc
+
+

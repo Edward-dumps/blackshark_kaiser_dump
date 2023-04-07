@@ -1,0 +1,6 @@
+#Add qkey service
+service qkey /vendor/bin/qkey
+    class main
+    user root
+    group root system vendor_qti_diag
+    oneshot

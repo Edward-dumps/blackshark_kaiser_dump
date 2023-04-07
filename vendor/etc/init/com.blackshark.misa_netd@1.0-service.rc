@@ -1,0 +1,4 @@
+service misa_netd /vendor/bin/hw/com.blackshark.misa_netd@1.0-service
+    class hal
+    user root
+    group root system inet radio net_admin

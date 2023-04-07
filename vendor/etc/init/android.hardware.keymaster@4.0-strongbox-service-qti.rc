@@ -1,0 +1,2 @@
+on init
+    exec u:r:vendor_init-qti-keymaster-sh:s0 -- /vendor/bin/init.qti.keymaster.sh

@@ -1,0 +1,91 @@
+{
+  "PipelineName": "normalsnapshot",
+  "NodesList": {
+    "Node": [
+      {
+          "NodeName": "com.xiaomi.plugin.smartdenoise",
+          "NodeInstance": "SDInstance0"
+      },
+      {
+          "NodeName": "com.xiaomi.plugin.dc",
+          "NodeInstance": "DcInstance0"
+      },
+	  {
+        "NodeName": "com.xiaomi.plugin.miaiie",
+        "NodeInstance": "MiAIIE"
+      },
+	  {
+          "NodeName": "com.xiaomi.plugin.skinbeautifier",
+          "NodeInstance": "SkinBeautifierInstance0"
+      },
+      {
+          "NodeName": "com.xiaomi.plugin.depurple",
+          "NodeInstance": "DepurpleInstance0"
+      }
+    ]
+  },
+  "PortLinkages": {
+      "Link": [
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "SourceBuffer"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SDInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "SDInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "DcInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "DcInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "MiAIIE"
+          }
+      },
+	  {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "MiAIIE"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SkinBeautifierInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "SkinBeautifierInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "DepurpleInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "DepurpleInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SinkBuffer"
+          }
+      }
+      ]
+  }
+}
