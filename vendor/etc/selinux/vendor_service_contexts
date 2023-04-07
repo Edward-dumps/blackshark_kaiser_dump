@@ -1,0 +1,43 @@
+#line 1 "vendor/xiaomi/proprietary/slm/sepolicy/service_contexts"
+sla_management                                       u:object_r:sla_service:s0
+#line 1 "vendor/blackshark/proprietary/GameSdk/sepolicy/service_contexts"
+#for bsgamesdk_service
+bsgamesdk                                 u:object_r:bsgamesdk_service:s0
+#line 1 "vendor/blackshark/proprietary/exlight/sepolicy/kaiser/service_contexts"
+#for exlight_service
+exlight                                 u:object_r:exlight_service:s0
+#line 1 "vendor/blackshark/proprietary/hydra/sepolicy/common/service_contexts"
+# add for hydra
+zeusis.hydra.modem.service                u:object_r:hydra_modemservice:s0
+zeusis.hydra.modem.registry               u:object_r:hydra_modemregistry:s0
+zeusis.hydra.features.service             u:object_r:hydra_featuresservice:s0
+zeusis.hydra.hermes.service               u:object_r:hydra_hermesservice:s0
+zeusis.hydra.hermes.registry              u:object_r:hydra_hermesregistry:s0
+zeusis.hydra.pan.service                  u:object_r:hydra_panservice:s0
+zeusis.hydra.pan.registry                 u:object_r:hydra_panregistry:s0
+hydraVendorTelephony                      u:object_r:hydra_vendorteleservice:s0
+misa_network                              u:object_r:misa_network_service:s0
+zeusis.hydra.alpha.service                u:object_r:hydra_alpha_service:s0
+zeusis.hydra.fabs.service                u:object_r:hydra_fabsservice:s0
+#line 1 "vendor/blackshark/proprietary/GameDockEngine/frameworks/sepolicy/common/service_contexts"
+#for gamedock_service
+gamedock                                 u:object_r:gamedock_service:s0
+#line 1 "vendor/blackshark/proprietary/nv_oeminfo/frameworks/sepolicy/common/service_contexts"
+oeminfo                                 u:object_r:oeminfo_service:s0
+#line 1 "vendor/blackshark/proprietary/GameEvaluate/sepolicy/common/service_contexts"
+#for blackshark.GamePerformanceService
+blackshark.GamePerformanceService                 u:object_r:system_app_service:s0
+#line 1 "vendor/blackshark/frameworks/base/freeformsepolicy/sepolicy/service_contexts"
+FreeFormManager                          u:object_r:freeform_service:s0
+#line 1 "vendor/blackshark/frameworks/base/holdonsepolicy/sepolicy/service_contexts"
+HoldOnService                          u:object_r:holdon_service:s0
+#line 1 "vendor/blackshark/frameworks/base/bsnetworsepolicy/sepolicy/service_contexts"
+#for bs_networkassistant service
+bs_networkassistant                     u:object_r:bs_networkassistant_service:s0
+#line 1 "device/blackshark/sepolicy/common/service_contexts"
+#for com.blackshark.msgtransfer.TransferService
+msgtransfer                 u:object_r:system_app_service:s0
+#line 1 "system/sepolicy/reqd_mask/service_contexts"
+# empty service_contexts file - this file is used to generate an empty
+# non-platform service_context for devices without any service_contexts
+# customizations.

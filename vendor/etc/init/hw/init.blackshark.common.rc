@@ -1,0 +1,215 @@
+# Blackshark platform common init rc configs go here
+
+on init
+    #forcetouch
+    chmod 0666 /dev/ndt
+    chown system system /dev/ndt
+    chown system system /mnt/vendor/persist/ndt
+    chmod 0666 /mnt/vendor/persist/ndt/fc_dim
+    chown system system /mnt/vendor/persist/ndt/fc_dim
+    chmod 0666 /mnt/vendor/persist/ndt/fc_sku
+    chown system system /mnt/vendor/persist/ndt/fc_sku
+    chmod 0666 /sys/ndt/switch
+    chown system system /sys/ndt/switch
+    chmod 0666 /sys/ndt/sensor_count
+    chown system system /sys/ndt/sensor_count
+
+    # touch
+    chown system system /sys/bus/spi/devices/spi0.0/fts_test
+    # light share mem device nodes
+    chmod 0666 /dev/light_shm
+    chown system system /dev/light_shm
+    # rgb
+    chown system system /sys/rgb0/mcu_control
+    chown system system /sys/rgb1/mcu_control
+    chown system system /sys/rgb0/name
+    chown system system /sys/rgb1/name
+    chmod 0666 /sys/rgb0/mcu_control
+    chmod 0666 /sys/rgb1/mcu_control
+    chmod 0666 /sys/rgb0/name
+    chmod 0666 /sys/rgb1/name
+
+on fs
+    #audio:smartpa cali para
+    #mkdir /mnt/vendor/persist/audio 0777 system system
+    chmod 0666 /mnt/vendor/persist/audio/crus_calr.bin
+
+on boot
+
+#hawkeye devices
+    chmod 0664 /dev/heye_bms_svr
+    chmod 0664 /dev/heye_bms_clt
+    chmod 0664 /dev/heye_pms_svr
+    chmod 0664 /dev/heye_pms_clt
+    chmod 0664 /dev/heye_ems_svr
+    chmod 0664 /dev/heye_ems_clt
+#charger nodes
+    chown system system /sys/class/qcom-battery/aging_running
+    chown system system /sys/class/qcom-battery/input_suspend
+
+on property:ro.build.type=user && property:persist.vendor.phone.beta.state=2
+    write /sys/module/soc_sleep_stats/parameters/pm_aosd_enable 0
+    write /sys/module/soc_sleep_stats/parameters/pm_rpmh_enable 0
+    write /sys/module/shark_power/parameters/pm_top_enable 0
+    write /sys/module/shark_power/parameters/pm_polling_delay 60000
+
+on charger
+    #thermal:poweroff charge
+    start thermal-engine
+
+#hawkeyecfg
+service hawkeyecfg /system/bin/hawkeyecfg --update
+    class main
+    user root
+    group system
+    oneshot
+    disabled
+
+on post-fs-data
+
+#hawkeye cfg
+#    mkdir /data/hawkeyecfg 0770 system system
+#    mkdir /data/hawkeyecfg/beta 0770 system system
+#    mkdir /data/hawkeyecfg/user 0770 system system
+#    mkdir /data/hawkeyecfg/release 0770 system system
+#    start hawkeyecfg
+#hawkeye cfg
+
+    setprop init.svc.vendor.bslogd.start 0
+    setprop ro.logd.kernel true
+    stop logd
+    start logd
+    start logd-reinit
+
+on property:ro.build.id=*
+    write /sys/kernel/dload/build_id  ${ro.build.id}
+
+# ffbm boot mode
+on property:ro.bootmode=ffbm-00
+    setprop init.svc.vendor.bslogd.start 1
+on property:ro.bootmode=ffbm-01
+    setprop init.svc.vendor.bslogd.start 1
+on property:ro.bootmode=ffbm-02
+    setprop init.svc.vendor.bslogd.start 1
+
+# charger boot mode
+on property:ro.bootmode=charger
+    setprop init.svc.vendor.bslogd.start 0
+
+#normal boot mode
+on property:sys.boot_completed=1
+    setprop init.svc.vendor.bslogd.start 1
+
+on property:ro.build.type=user && property:persist.vendor.phone.beta.state=2
+    setprop persist.vendor.offlinelog 0
+    setprop persist.vendor.bs_trans_reg 0
+
+on property:persist.vendor.offlinelog=1 && property:init.svc.vendor.bslogd.start=1
+    setprop persist.sys.bslogd.logcatd bs_logcatd
+
+on property:init.svc.vendor.bslogd.start=0
+    setprop persist.sys.bslogd.logcatd 0
+
+on property:persist.vendor.offlinelog=0
+    setprop persist.sys.bslogd.logcatd 0
+    setprop persist.vendor.bslogd.battd 0
+    setprop persist.vendor.download_mode 0
+    setprop persist.vendor.ssr.enable_ramdumps 0
+    setprop persist.vendor.ssr.restart_level ALL_ENABLE
+    start bs_logcatd_sys_cl
+
+on property:ro.build.type=user && property:persist.vendor.phone.beta.state=2
+    write /sys/module/rpm_stats/parameters/pm_aosd_enable 0
+    write /sys/module/rpm_stats/parameters/pm_rpmh_enable 0
+    write /sys/module/shark_power/parameters/pm_top_enable 0
+    write /sys/module/shark_power/parameters/pm_polling_delay 60000
+
+on property:persist.vendor.aging=*
+    write /sys/class/qcom-battery/aging_running ${persist.vendor.aging}
+
+on property:ro.build.id=*
+	write /sys/kernel/dload/build_id  ${ro.build.id}
+
+on property:persist.vendor.download_mode=1
+    write /sys/module/qcom_dload_mode/parameters/download_mode 1
+    setprop persist.sys.pstore.path /sys/fs/pstore/console-ramoops-0
+on property:persist.vendor.download_mode=0
+    write /sys/module/qcom_dload_mode/parameters/download_mode 0
+
+##logcat on/off
+#on property:persist.vendor.bslogd.logcatd=bs_logcatd
+#    start bs_logcatd_sys
+
+#on property:persist.vendor.bslogd.logcatd=0
+#    stop bs_logcatd_sys
+
+#on property:persist.vendor.bslogd.logcatd=bs_logcatd && property:persist.vendor.offlinelog=1 && property:init.svc.vendor.bslogd.start=1
+#    mkdir /data/bslogs 0771 system system
+#    mkdir /data/bslogs/logcat 0771 system system
+
+service bs_logcatd_sys /system/bin/logcat -b all -v threadtime -v usec -v printable -D -f /data/bslogs/logcat/logcat -r 4096 -n 768
+    class main
+    user system
+    group system
+    disabled
+    seclabel u:r:bs_logcatd_sys:s0
+    writepid /dev/cpuset/system-background/tasks
+
+service bs_logcatd_sys_cl /system/bin/logcat -b all -v threadtime -v usec -v printable -D -f  /data/bslogs/logcat/logcat -r 4096 -n 768 -c
+    class main
+    user system
+    group system
+    oneshot
+    disabled
+    seclabel u:r:bs_logcatd_sys:s0
+    writepid /dev/cpuset/system-background/tasks
+
+#蓝牙log
+#bt log on/off
+on property:persist.bluetooth.btsnoopenable=true && property:persist.vendor.offlinelog=1 && property:init.svc.vendor.bslogd.start=1
+    mkdir /data/misc/bluetooth/logs 0700 bluetooth bluetooth
+    chmod 0777  /data/misc/bluetooth/logs
+
+#Factory test for nvme
+on property:ro.boot.factorybuild=1 && property:persist.vendor.blackshark.rawdata=0
+   exec -- /system/bin/make_f2fs /dev/block/nvme0n1
+   setprop persist.vendor.blackshark.rawdata 1
+
+on property:ro.boot.factorybuild=1 && property:persist.vendor.blackshark.rawdata=1
+   mkdir /data/nvmedisk 0771 system system
+   mount f2fs /dev/block/nvme0n1 /data/nvmedisk
+
+on property:sys.boot_completed=1
+   chown system system /data/nvmedisk
+
+#Add qkey service
+service qkey /vendor/bin/qkey
+    class main
+    user root
+    group root system vendor_qti_diag
+    oneshot
+
+on property:persist.vendor.offlinelog=1 && property:persist.vendor.bslogd.battd=0
+    setprop persist.vendor.bslogd.battd bs_battd
+
+on property:persist.vendor.offlinelog=0
+    setprop persist.vendor.bslogd.battd 0
+
+#battlog on /off
+on property:persist.vendor.bslogd.battd=bs_battd && property:persist.vendor.offlinelog=1 && property:init.svc.vendor.bslogd.start=1
+    mkdir /data/vendor/bslogs/battery 0700 system system
+    start bs_battd
+
+on property:persist.vendor.bslogd.battd=0
+    stop bs_battd
+
+#service of batlog
+service bs_battd /vendor/bin/battd
+    class late_start
+    user system
+    group system
+    disabled
+    writepid /dev/cpuset/system-background/tasks
+
+on property:persist.vendor.offlinelog=1
+    setprop persist.vendor.ssr.enable_ramdumps 1

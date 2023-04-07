@@ -1,0 +1,12 @@
+on post-fs-data
+    mkdir /data/vendor/modemservice 0770 system system
+    chown system system /data/vendor/modemservice
+
+service modemservice /system/vendor/bin/modemservice
+    class main
+    user root
+    group radio cache inet misc audio sdcard_r sdcard_rw net_raw diag log
+    disabled
+
+on property:ro.crypto.state=encrypted
+    start modemservice

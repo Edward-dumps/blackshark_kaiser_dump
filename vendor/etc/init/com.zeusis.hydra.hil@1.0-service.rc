@@ -1,0 +1,13 @@
+on post-fs-data
+    mkdir /data/vendor/hermesservice 0770 system system
+    chown system system /data/vendor/hermesservice
+    mkdir /data/vendor/bslogs 0775 log log
+
+service hermesservice /system/vendor/bin/hermesservice
+    class main
+    user shell
+    group system radio cache inet misc audio sdcard_r sdcard_rw net_raw diag log oem_2902 vendor_adpl_odl
+    disabled
+
+on property:ro.crypto.state=encrypted
+    start hermesservice

@@ -1,0 +1,4 @@
+service bsnvops-hal /vendor/bin/hw/com.blackshark.bsnvops@1.0-service
+    class main
+    user root
+    group root system vendor_qti_diag

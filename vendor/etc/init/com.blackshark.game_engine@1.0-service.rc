@@ -1,0 +1,18 @@
+on init
+    # Add system-foreground cpuset for perf critical system services
+    mkdir /dev/cpuset/system-foreground
+    write /dev/cpuset/system-foreground/cpus 0-7
+    write /dev/cpuset/system-foreground/mems 0
+    chown system system /dev/cpuset/system-foreground
+    chown system system /dev/cpuset/system-foreground/tasks
+    chmod 0775 /dev/cpuset/system-foreground
+    chmod 0664 /dev/cpuset/system-foreground/tasks
+
+on post-fs-data
+    # create dir for game engine config
+    mkdir /data/vendor/etc_push 0770 root system
+
+service game_engine-1-0 /vendor/bin/hw/com.blackshark.game_engine@1.0-service
+    class hal
+    user root
+    group root system readproc

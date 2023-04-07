@@ -1,0 +1,12 @@
+<manifest version="1.0" type="device">
+    <hal format="hidl">
+        <name>com.blackshark.game_engine</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IGameEngine</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IGameEngine/default</fqname>
+    </hal>
+</manifest>

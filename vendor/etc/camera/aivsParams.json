@@ -1,0 +1,77 @@
+{
+    "humanSeg_depth": {
+        "quantization": "int8",
+        "dlc_name": "model1.dlc",
+        "md5_code": "7020e06bea924c79a611dfc42baf4aa4",
+        "inputs": [
+            {
+                "name": "data",
+                "shape": [1, 256, 256, 3]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "dpt",
+                "layer": "convolution_29",
+                "shape": [1, 256, 256, 1]
+            },
+            {
+                "name": "seg",
+                "layer": "softmax_0",
+                "shape": [1, 512, 512, 2]
+            }
+        ]
+    },
+    "saliency": {
+        "quantization": "int8",
+        "dlc_name": "model2.dlc",
+        "md5_code": "b7f03f23a0639929fe329ff886e8ab55",
+        "inputs": [
+            {
+                "name": "data",
+                "shape": [1, 256, 256, 3]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "output",
+                "shape": [1, 256, 256, 1]
+            }
+        ]
+    },
+    "humanSegPreview": {
+        "quantization": "int8",
+        "dlc_name": "model3.dlc",
+        "md5_code": "79f3c68500a152005ea988b113ea1b9f",
+        "inputs": [
+            {
+                "name": "data",
+                "shape": [1, 256, 256, 3]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "output",
+                "shape": [1, 512, 512, 2]
+            }
+        ]
+    },
+    "humanSegCapture":{
+        "quantization": "int8",
+        "dlc_name": "model4.dlc",
+        "md5_code": "e994ad289bd8c2079826dffee5f9681e",
+        "inputs": [
+            {
+                "name": "data",
+                "shape": [1, 800, 800, 3]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "score",
+                "shape": [1, 800, 800, 2]
+            }
+        ]
+    }
+}
+

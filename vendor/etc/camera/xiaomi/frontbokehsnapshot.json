@@ -1,0 +1,97 @@
+{
+  "PipelineName": "FrontBokehSnapshot",
+  "NodesList": {
+      "Node": [
+      {
+          "NodeName": "com.xiaomi.plugin.skinbeautifier",
+          "NodeInstance": "SkinBeautifierInstance0"
+      },
+	  {
+          "NodeName": "com.xiaomi.plugin.smartdenoise",
+          "NodeInstance": "SDInstance0"
+      },
+      {
+          "NodeName": "com.qcom.plugin.gpu",
+          "NodeInstance": "GpuInstance0"
+      },
+      {
+          "NodeName": "com.xiaomi.plugin.mibokeh",
+          "NodeInstance": "MiBokehInstance0"
+      }
+      ]
+  },
+  "PortLinkages": {
+      "Link": [
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "SourceBuffer"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SkinBeautifierInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "SkinBeautifierInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SDInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "SDInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "GpuInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "GpuInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "MiBokehInstance0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 0,
+              "NodeInstance": "MiBokehInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SinkBuffer0"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 1,
+              "NodeInstance": "MiBokehInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SinkBuffer1"
+          }
+      },
+      {
+          "SrcPort": {
+              "PortId": 2,
+              "NodeInstance": "MiBokehInstance0"
+          },
+          "DstPort": {
+              "PortId": 0,
+              "NodeInstance": "SinkBuffer2"
+          }
+      }
+      ]
+  }
+}
