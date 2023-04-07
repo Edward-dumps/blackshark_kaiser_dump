@@ -1,0 +1,2 @@
+require version-baseband=4.0.c6-00107.1-LC_ALL_PACK-1.2489.11.2613.8
+require version-vendor=1645430489
