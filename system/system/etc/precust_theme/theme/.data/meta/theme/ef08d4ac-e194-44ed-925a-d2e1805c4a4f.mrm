@@ -1,0 +1,103 @@
+{
+  "localId": "ef08d4ac-e194-44ed-925a-d2e1805c4a4f",
+  "onlineId": null,
+  "assemblyId": null,
+  "productId": null,
+  "hash": "4772d4c9dbea498255d24d4038d79b3155e862d5",
+  "platform": 8,
+  "size": 8009870,
+  "updatedTime": 0,
+  "version": "1.0",
+  "authors": {
+    "fallback": "黑鲨GXD"
+  },
+  "designers": {
+    "fallback": "黑鲨GXD"
+  },
+  "titles": {
+    "zh_TW": "競技怪獸",
+    "zh_CN": "竞技怪兽",
+    "fallback": "Competitive monster"
+  },
+  "descriptions": {},
+  "builtInThumbnails": {
+    "en_US": [
+      "en_US_lockscreen_0.jpg",
+      "en_US_launcher_0.jpg",
+      "en_US_launcher_1.jpg",
+      "en_US_statusbar_0.jpg",
+      "en_US_statusbar_1.jpg",
+      "en_US_contact_0.jpg",
+      "en_US_mms_0.jpg",
+      "en_US_mms_1.jpg"
+    ],
+    "fallback": [
+      "preview_lockscreen_0.jpg",
+      "preview_launcher_0.jpg",
+      "preview_icons_small_0.jpg",
+      "preview_icons_0.jpg"
+    ]
+  },
+  "builtInPreviews": {
+    "en_US": [
+      "en_US_lockscreen_0.jpg",
+      "en_US_launcher_0.jpg",
+      "en_US_launcher_1.jpg",
+      "en_US_statusbar_0.jpg",
+      "en_US_statusbar_1.jpg",
+      "en_US_contact_0.jpg",
+      "en_US_mms_0.jpg",
+      "en_US_mms_1.jpg"
+    ],
+    "fallback": [
+      "preview_lockscreen_0.jpg",
+      "preview_launcher_0.jpg",
+      "preview_icons_0.jpg"
+    ]
+  },
+  "thumbnails": [],
+  "previews": [],
+  "parentResources": [],
+  "subResources": [
+    {
+      "localId": "c2dd4f20-522d-4613-af40-b8b7fd4e8d9a",
+      "resourceCode": "wallpaper",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "9499d685-2699-4fa9-ba20-aa381b05d101",
+      "resourceCode": "icons",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "af13a025-778e-4f05-9a73-d2b6c19cd0c0",
+      "resourceCode": "lockscreen",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "7a08b066-ed45-4b45-a801-4dec53e454f4",
+      "resourceCode": "module_config.xml",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "ba1c82a6-334a-4202-84eb-ec21f8b93909",
+      "resourceCode": "plugin_config.xml",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    }
+  ],
+  "extraMeta": {},
+  "metaPath": null,
+  "contentPath": null,
+  "rightsPath": null,
+  "screenRatio": null
+}

@@ -1,0 +1,8 @@
+service uvc_assit /system/bin/uvc_assit
+    class main
+    user root
+    group root system
+    disabled
+
+on property:sys.boot_completed=1
+    start uvc_assit

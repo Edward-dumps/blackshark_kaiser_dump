@@ -1,0 +1,24 @@
+{
+    "pan":[
+        {
+            "Dbg_Level":"0x00000111",
+            "Usage_Monitor":"true",
+            "Usage_Record":"true",
+            "Record_Intervel":"10",
+            "China_URL":"www.baidu.com,www.qq.com",
+            "Oversea_URL":"www.google.com,www.facebook.com",
+            "Default_Address":"198.41.0.4",
+            "Root_Service":"198.41.0.4,192.203.230.10"
+        }
+    ],
+    "unicom_qos":[
+        {
+            "Duration":"28800",
+            "Level":"2",
+            "Reset_Time":"04:00",
+            "IP_Number":"4",
+            "DBG":"false",
+            "Server_Result":""
+        }
+    ]
+}

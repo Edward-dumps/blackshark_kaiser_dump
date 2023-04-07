@@ -1,0 +1,80 @@
+on post-fs-data
+	mkdir /data/local/log 0777 system system
+	mkdir /data/vendor/tz_log 0771 root root
+	chown system system /dev/mtd0
+
+service kernellog /system/bin/sh /system/bin/kernellog.sh
+	class main
+	user root
+	group system
+	disabled
+	oneshot
+	seclabel u:r:kernellog:s0
+
+service logcatkernel /system/bin/sh /system/bin/logcatkernel.sh
+        class main
+        user system
+        group system
+        disabled
+        oneshot
+        seclabel u:r:kernellog:s0
+
+service logcatlog /system/bin/sh /system/bin/logcatlog.sh
+	class main
+	user system
+	group system
+	disabled
+	seclabel u:r:kernellog:s0
+
+service mtdoopslog /system/bin/sh /system/bin/mtdoopslog.sh
+	class main
+	user system
+	group system
+	disabled
+	oneshot
+	seclabel u:r:mtdoopslog:s0
+
+on property:persist.sys.offlinelog.kernel=true
+	start kernellog
+
+on property:persist.sys.offlinelog.kernel=false
+	stop kernellog
+
+on property:persist.sys.offlinelog.logcatkernel=true
+	write /proc/sys/kernel/printk 8
+        start logcatkernel
+
+on property:persist.sys.offlinelog.logcatkernel=false
+        stop logcatkernel
+
+on property:persist.sys.offlinelog.logcat=true
+	start logcatlog
+
+on property:persist.sys.offlinelog.logcat=false
+	stop logcatlog
+
+###bs offline log
+service bs_logcatd /system/bin/sh /system/bin/bs_offlinelog.sh
+        class main
+        user system
+        group system
+        disabled
+        seclabel u:r:kernellog:s0
+
+service bs_logcatd_cl /system/bin/sh /system/bin/bs_offlinelog.sh clear
+        class main
+        user system
+        group system
+        disabled
+        oneshot
+        seclabel u:r:kernellog:s0
+
+on property:persist.sys.bslogd.logcatd=bs_logcatd
+    write /proc/sys/kernel/printk 8
+    start bs_logcatd
+
+on property:persist.sys.bslogd.logcatd=0 && property:persist.vendor.offlinelog=0
+    stop bs_logcatd
+    start bs_logcatd_cl
+
+

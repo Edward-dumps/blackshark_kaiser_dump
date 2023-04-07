@@ -1,0 +1,50 @@
+{
+  "localId": "af13a025-778e-4f05-9a73-d2b6c19cd0c0",
+  "onlineId": null,
+  "assemblyId": null,
+  "productId": null,
+  "hash": "33c76db9c28bb78846cd9e668c7a8464a3438486",
+  "platform": 8,
+  "size": 1685759,
+  "updatedTime": 0,
+  "version": "1.0",
+  "authors": {
+    "fallback": "BLACKSHARK"
+  },
+  "designers": {
+    "fallback": "BLACKSHARK"
+  },
+  "titles": {
+    "zh_TW": "競技怪獸",
+    "zh_CN": "竞技怪兽",
+    "fallback": "Competitive monster"
+  },
+  "descriptions": {},
+  "builtInThumbnails": {
+    "fallback": [
+      "preview_lockscreen_0.jpg"
+    ]
+  },
+  "builtInPreviews": {
+    "fallback": [
+      "preview_lockscreen_0.jpg"
+    ]
+  },
+  "thumbnails": [],
+  "previews": [],
+  "parentResources": [
+    {
+      "localId": "ef08d4ac-e194-44ed-925a-d2e1805c4a4f",
+      "resourceCode": "theme",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    }
+  ],
+  "subResources": [],
+  "extraMeta": {},
+  "metaPath": null,
+  "contentPath": null,
+  "rightsPath": null,
+  "screenRatio": null
+}
